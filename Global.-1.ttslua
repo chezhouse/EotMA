@@ -7,6 +7,30 @@ g_CurrentScenario       =   nil
 
 g_SocialStateDelta  =   1.66
 
+g_StatureBags = {
+    {
+        Value = 1,
+        Bag = "71a8da",
+    },
+    {
+        Value = 2,
+        Bag = "d61b99",
+    },
+    {
+        Value = 3,
+        Bag = "94568b",
+    },
+    {
+        Value = 5,
+        Bag = "fcadc7",
+    },
+    {
+        Value = 9,
+        Bag = "e1fee7",
+    },
+}
+
+
 g_PlayerGUIDs =
 {
     {
@@ -15,6 +39,10 @@ g_PlayerGUIDs =
         SocialStateBag = "41cb94",
         ClaimBag = "344c77",
         FortBag = "512538",
+        CombatPos   =   {  -37.47, -0.79, -43.03 },
+        AdminPos   =   {-32.87, -0.79, -43.03 },
+        DiplomacyPos   =   { -28.27 , -0.79, -43.03 },
+        StatureRotation = { 0, 180, 0},
     },
     {
         Color = "White",
@@ -22,6 +50,10 @@ g_PlayerGUIDs =
         SocialStateBag = "d36a40",
         ClaimBag = "d4be3a",
         FortBag = "93a280",
+        CombatPos   =      { 16.67, -0.35, -42.99 },  -- 4.6
+        AdminPos   =       { 21.27, -0.35, -42.99 },
+        DiplomacyPos   =   { 25.87, -0.35, -42.99 },
+        StatureRotation = { 0, 180, 0},
     },
     {
         Color = "Brown",
@@ -29,6 +61,10 @@ g_PlayerGUIDs =
         SocialStateBag = "d92605",
         ClaimBag = "fece3b",
         FortBag = "6bc787",
+        CombatPos   =      { -8.81, -0.35, -42.98 }, -- 4.6
+        AdminPos   =       { -4.21, -0.35, -42.98 },
+        DiplomacyPos   =   {  0.41, -0.35, -42.98 },
+        StatureRotation = { 0, 180, 0},
     },
     {
         Color   =   "Neutral",
@@ -36,6 +72,9 @@ g_PlayerGUIDs =
         SocialStateBag  =   "a540d1",
         ClaimBag    =   "",
         FortBag = "8e6886",
+        CombatPos   =   {},
+        AdminPos   =   {},
+        DiplomacyPos   =   {},
     }
 }
 
@@ -616,10 +655,23 @@ function SelectScenario(scen)
         if thePlayer != nil then
             ssBag = thePlayer.SocialStateBag
             if (pd.Color != "Neutral") then
+                -- take care of their court
                 courtGUID = thePlayer.Court
                 courtName = pd.Court
                 courtMarker = getObjectFromGUID(courtGUID)
                 setupSocialStateFromMarker(courtMarker,courtName, pd.CourtSocialState)
+                -- take care of their leader Stature
+
+                local lsMarker = getLeaderStatureMarkerForValue(pd.Combat)
+                lsMarker.setPosition(thePlayer.CombatPos)
+                lsMarker.setRotation(thePlayer.StatureRotation)
+                lsMarker = getLeaderStatureMarkerForValue(pd.Admin)
+                lsMarker.setPosition(thePlayer.AdminPos)
+                lsMarker.setRotation(thePlayer.StatureRotation)
+                lsMarker = getLeaderStatureMarkerForValue(pd.Diplomacy)
+                lsMarker.setPosition(thePlayer.DiplomacyPos)
+                lsMarker.setRotation(thePlayer.StatureRotation)
+
             end
             -- the social state for all areas
             for i,land in ipairs(pd.Areas) do
@@ -673,6 +725,7 @@ function setupClaimFromBag(bagGUID, areaName)
         return
     end
     local basePos = areaData.Pos
+    basePos[2] = 1.7
     marker.setPosition(basePos)
     marker.setRotation({0,180,0})
 end
@@ -691,6 +744,7 @@ function setupFortFromBag(bagGUID, fortData)
         return
     end
     local basePos = areaData.Pos
+    basePos[2] = 1.8
     marker.setPosition(basePos)
     if strength > 2 then
         marker.setRotation({0,180,180})
@@ -721,8 +775,32 @@ function setupSocialStateFromMarker(marker, areaName,current)
         pos[1] = pos[1] + (g_SocialStateDelta * current)
         marker.setRotation({0,180,0})
     end
+    pos[2] = 1.6
     marker.setPosition(pos)
 end
+
+function getLeaderStatureMarkerForValue(val)
+    bagGUID = getLeaderStatureBagGUIDForValue(val)
+    if bagGUID == nil then
+        return
+    end
+    local bag = getObjectFromGUID(bagGUID)
+    local marker = bag.takeObject()
+    return marker
+end
+
+
+-- given a value, this will return the guid for the bag
+function getLeaderStatureBagGUIDForValue(val)
+    for i,bag in ipairs(g_StatureBags) do
+        if val == bag.Value then
+            return bag.Bag
+        end
+    end
+    return nil
+end
+
+
 
 --[[ The onLoad event is called after the game save finishes loading. --]]
 function onLoad()
