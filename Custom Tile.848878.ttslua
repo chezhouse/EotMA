@@ -1,0 +1,152 @@
+allPlayersList = {
+    "Blue",
+    "Teal",
+    "Green",
+    "Yellow",
+    "Orange",
+    "Red",
+    "Brown",
+    "White",
+    "Pink",
+    "Purple"
+}
+defaultControls = {
+    {
+        handler  =   "noop",
+        label       =   "Scenarios",
+        position    = {0.0,0.2,-0.5},
+        scale       = {0.25,1.0, 0.25},
+        width       = 3000,
+        height      = 300,
+        font_size   = 250,
+        bgColor     = { 0.3, 0.3, 0.3 },
+        fgColor     = { 0.4, 0.7, 0.4 },
+        tooltip     = ""
+    },
+    {
+        handler  =   "noop",
+        label       =   "Select a scenario...",
+        position    = {0.0,0.2,-0.375},
+        scale       = {0.25,1.0, 0.25},
+        width       = 3000,
+        height      = 200,
+        font_size   = 150,
+        bgColor     = { 0.3, 0.3, 0.3 },
+        fgColor     = { 0.3, 0.5, 0.3 },
+        tooltip     = "Choose a scenario below for setup"
+    },
+    {
+        handler  =   "closeScenarioScreen",
+        label       =   "Close Setup",
+        position    = {0.0,0.2,0.9},
+        scale       = {0.25,1.0, 0.25},
+        width       = 900,
+        height      = 300,
+        font_size   = 150,
+        bgColor     = { 0.3, 0.3, 0.3 },
+        fgColor     = { 0.8, 0.3, 0.3 },
+        tooltip     = "Close setup options"
+    }
+
+}
+
+-- don't do anything
+function noop()
+end
+
+function onScenario_1()
+    chooseScenario(1)
+end
+function onScenario_2()
+    chooseScenario(2)
+end
+function onScenario_3()
+    chooseScenario(3)
+end
+function onScenario_4()
+    chooseScenario(4)
+end
+function onScenario_5()
+    chooseScenario(5)
+end
+function onScenario_6()
+    chooseScenario(6)
+end
+function chooseScenario(num)
+    print("Choosing scenario:"..tostring(num))
+    Global.call("SelectScenario",num)
+    closeScenarioScreen()
+end
+function closeScenarioScreen()
+    self.setInvisibleTo(allPlayersList)
+end
+-- create buttons
+function createControls()
+    for i, data in ipairs(defaultControls) do
+        self.createButton({
+            click_function  = data.handler,
+            function_owner  = self,
+            label           = data.label,
+            position        = data.position,
+            scale           = data.scale,
+            width           = data.width,
+            height          = data.height,
+            font_size       = data.font_size,
+            color           = data.bgColor,
+            font_color      = data.fgColor,
+            tooltip         = data.tooltip,
+        })
+    end
+
+    local inx       = 1
+    local basepos   = {0.0, 0.2, 0.0 }
+    local bgColor   = { 0.3, 0.3, 0.3 }
+    local fgColor   = { 0.4, 0.7, 0.4 }
+    local startZ    = -0.45
+    scenTable = Global.getTable("g_ScenarioData")
+    for i,scen in ipairs(scenTable) do
+        local fct = "onScenario_"..tostring(inx)
+        local pos = basepos
+        pos[1] = -0.3
+        pos[3] = startZ + (inx * 0.2)
+        self.createButton({
+            click_function  = fct,
+            function_owner  = self,
+            label           = scen.Name,
+            position        = pos,
+            scale           = {0.25, 1, 0.25},
+            width           = 1500,
+            height          = 300,
+            font_size       = 100,
+            color           = bgColor,
+            font_color      = fgColor,
+            tooltip         = scen.Name
+        })
+        pos[1] = 0.4
+        yearRange = "From "..tostring(scen.StartYear).." to "..tostring(scen.EndYear)
+        self.createButton({
+            click_function  = fct,
+            function_owner  = self,
+            label           = yearRange,
+            position        = pos,
+            scale           = {0.25, 1, 0.25},
+            width           = 1000,
+            height          = 300,
+            font_size       = 100,
+            color           = bgColor,
+            font_color      = fgColor,
+            tooltip         = scen.Name
+        })
+        inx = inx + 1
+    end
+end
+
+-- onLoad
+function onLoad(save_state)
+    -- build the choices for scenarios
+    createControls()
+    -- glob = getAllObjects()
+    -- for i,obj in ipairs(glob) do
+    --     print(tostring(obj))
+    -- end
+end

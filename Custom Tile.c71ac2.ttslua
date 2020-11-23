@@ -1,0 +1,134 @@
+
+
+defaultData = {
+    yearButtons = {
+        {
+            click_turn = "advanceTurn",
+            label = "+",
+            position = {0.6, 0.2, 0.85},
+            scale = {0.25,1.0, 0.25},
+            width= 400,
+            height = 400,
+            font_size = 400,
+            bgColor     = { 0.1, 0.1, 0.1 },
+            fgColor     = { 0.2, 1.0, 0.6 },
+            tooltip = "Advance Turn",
+        },
+        {
+            click_turn = "decrementTurn",
+            label = "-",
+            position = {-0.6, 0.2, 0.85},
+            scale = {0.25,1.0, 0.25},
+            width= 400,
+            height = 400,
+            font_size = 400,
+            bgColor     = { 0.1, 0.1, 0.1 },
+            fgColor     = { 0.2, 1.0, 0.6 },
+            tooltip = "Decrement Turn",
+        },
+        {
+            click_turn  =   "updateYear",
+            label       =   "",
+            position    = {0.0,0.2,0.45},
+            scale       = {0.25,1.0, 0.25},
+            width       = 2000,
+            height      = 825,
+            font_size   = 800,
+            bgColor     = { 0.1, 0.1, 0.1 },
+            fgColor     = { 0.2, 1.0, 0.6 },
+            tooltip     = "Current Year"
+        },
+        {
+            click_turn  =   "updateYear",
+            label       =   "Scenario",
+            position    = {0.0,0.2,-0.25},
+            scale       = {0.25,1.0, 0.25},
+            width       = 3000,
+            height      = 740,
+            font_size   = 280,
+            bgColor     = { 0.3, 0.3, 0.3 },
+            fgColor     = { 0.4, 1.0, 0.4 },
+            tooltip     = "Current Scenario"
+        },
+        {
+            click_turn  =   "updateYear",
+            label       =   "The Current Year",
+            position    = {0.0,0.2,0.15},
+            scale       = {0.25,1.0, 0.25},
+            width       = 3000,
+            height      = 300,
+            font_size   = 250,
+            bgColor     = { 0.3, 0.3, 0.3 },
+            fgColor     = { 0.4, 0.7, 0.4 },
+            tooltip     = "Current Year"
+        }
+    }
+}
+textFontColor = {0,0,0}
+--Color information for button background
+lightbackgroundColor = {1,1,1}
+darkbackgroundColor  = {0.1,0.1,0.1}
+--Change scale of button (Avoid changing if possible)
+
+
+
+
+
+function createButtons()
+    for i, data in ipairs(defaultData.yearButtons) do
+        --Sets up reference function
+        self.createButton({
+            click_function  = data.click_turn,
+            function_owner  = self,
+            label           = data.label,
+            position        = data.position,
+            scale           = data.scale,
+            width           = data.width,
+            height          = data.height,
+            font_size       = data.font_size,
+            color           = data.bgColor,
+            font_color      = data.fgColor,
+            tooltip         = data.tooltip,
+        })
+    end
+
+end
+
+
+function advanceTurn()
+    cy = Global.getVar("g_CurrentYear")
+    cy = cy + 5
+    ey = Global.getVar("g_ScenarioEndYear")
+    if cy > ey then
+        cy = ey + 1
+    end
+    Global.setVar("g_CurrentYear", cy)
+    updateYear()
+end
+
+function decrementTurn()
+    cy = Global.getVar("g_CurrentYear")
+    cy = cy - 5
+    sy = Global.getVar("g_ScenarioStartYear")
+    if cy < sy then
+        cy = sy
+    end
+    Global.setVar("g_CurrentYear", cy)
+    updateYear()
+end
+
+function updateYear()
+    cy = Global.getVar("g_CurrentYear")
+    sv = tostring(cy)
+    self.editButton({index = 2, label = sv })
+    cy = Global.getVar("g_ScenarioName")
+    sv = tostring(cy)
+    self.editButton({index = 3, label = sv })
+end
+
+function onLoad(stage)
+    createButtons()
+    scenarioYear = 771
+    updateYear()
+
+end

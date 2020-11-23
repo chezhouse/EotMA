@@ -1,0 +1,735 @@
+--[[ Lua code. See documentation: https://api.tabletopsimulator.com/ --]]
+g_ScenarioStartYear    =     771
+g_CurrentYear             =     771
+g_ScenarioEndYear         =     1465
+g_ScenarioName          =       "Unknown"
+g_CurrentScenario       =   nil
+
+g_SocialStateDelta  =   1.66
+
+g_PlayerGUIDs =
+{
+    {
+        Color = "Red",
+        Court = "1a07ec",
+        SocialStateBag = "41cb94",
+        ClaimBag = "344c77",
+        FortBag = "512538",
+    },
+    {
+        Color = "White",
+        Court = "1e32c5",
+        SocialStateBag = "d36a40",
+        ClaimBag = "d4be3a",
+        FortBag = "93a280",
+    },
+    {
+        Color = "Brown",
+        Court = "198a70",
+        SocialStateBag = "d92605",
+        ClaimBag = "fece3b",
+        FortBag = "6bc787",
+    },
+    {
+        Color   =   "Neutral",
+        Court   =   "",
+        SocialStateBag  =   "a540d1",
+        ClaimBag    =   "",
+        FortBag = "8e6886",
+    }
+}
+
+g_AreaLocations =
+{
+    -- British Isles
+    {
+        Name = "Wessex",
+        Pos = {-27.96, 0.96, 6.15 }
+    },
+    {
+        Name = "Mercia",
+        Pos = {-28.24, 0.96, 10.52}
+    },
+    {
+        Name = "Northumbria",
+        Pos = {-27.56, 0.96, 13.21 }
+    },
+    {
+        Name = "Scotland",
+        Pos = {-28.85, 0.96, 15.40 }
+    },
+    {
+        Name = "Ireland",
+        Pos = {-35.16, 0.96, 11.96 }
+    },
+    {
+        Name = "Wales",
+        Pos = { -31.28, 0.96, 8.52 }
+    },
+
+    -- Scandinavia
+    {
+        Name = "Norway",
+        Pos = {  -18.45, 0.96, 20.30 }
+    },
+    {
+        Name = "Sweden",
+        Pos = { -10.95, 0.96, 17.94 }
+    },
+    {
+        Name = "Denmark",
+        Pos = { -14.25, 0.96, 13.85 }
+    },
+
+    -- Western Europe
+    {
+        Name = "Brittany",
+        Pos = { -31.49, 0.96, -0.68 }
+    },
+    {
+	    Name = "Champagne",
+	    Pos = {-20.4, 0.96,1.72}
+    },
+    {
+	    Name = "Ile de France",
+	    Pos = {-24.48, 0.96,-0.50}
+    },
+    {
+	    Name = "Normandy",
+	    Pos = {-27.28,0.96,1.77}
+    },
+    {
+	    Name = "Anjou",
+	    Pos = {-24.86,0.96,-2.98}
+    },
+    {
+	    Name = "Aquitaine",
+	    Pos = {-29.08,0.96,-5.24}
+    },
+    {
+	    Name = "Toulouse",
+	    Pos = {-24.92,0.96,-7.56}
+    },
+    {
+	    Name = "Burgundy",
+	    Pos = {-21.39, 0.96,-5.29}
+    },
+    {
+	    Name = "Provence",
+	    Pos = {-20.07,0.96,-9.83}
+    },
+
+    -- Central Europe
+    {
+		Name = "Lorraine",
+		Pos = {-18.36,0.96,6.20}
+    },
+    {
+		Name = "Franconia",
+		Pos = {-12.51, 0.96,3.82}
+    },
+    {
+	    Name = "Swabia",
+	    Pos = {-17.07,0.96,-0.31}
+    },
+    {
+	    Name = "Switzerland",
+        Pos = {-17.43,0.96,-2.86}
+    },
+    {
+	    Name = "Friesland",
+	    Pos = {-20.73,0.96,8.28}
+    },
+    {
+	    Name = "Flanders",
+	    Pos = {-21.14,0.96,3.71}
+    },
+
+    {
+	    Name = "Saxony",
+	    Pos = { -13.66, 0.96, 8.56 }
+    },
+    {
+	    Name = "Bavaria",
+	    Pos = { -11.62, 0.96, 1.83 }
+    },
+    {
+	    Name = "Austria",
+	    Pos = { -9.80, 0.96, -0.54 }
+    },
+
+    -- Western Slavs
+    {
+	    Name = "Pomerania",
+	    Pos = { -6.74, 0.96, 9.79 }
+    },
+    {
+	    Name = "Brandenburg",
+	    Pos = { -10.15, 0.96, 6.29 }
+    },
+    {
+	    Name = "Poland",
+	    Pos = { -3.19, 0.96, 7.30 }
+    },
+    {
+	    Name = "Silesia",
+	    Pos = { -4.74, 0.96, 4.24 }
+    },
+    {
+	    Name = "Volhynia",
+	    Pos = { 3.24, 0.96, 4.71 }
+    },
+    {
+	    Name = "Bohemia",
+	    Pos = { -4.29, 0.96, 1.72 }
+    },
+
+    -- Balkans
+    {
+	    Name = "Hungary",
+	    Pos = { 0.06, 0.96, -2.33 }
+    },
+    {
+	    Name = "Wallachia",
+	    Pos = { 8.37, 0.96, -1.57 }
+    },
+    {
+	    Name = "Croatia",
+	    Pos = { -1.10, 0.96, -5.33 }
+    },
+    {
+	    Name = "Bulgaria",
+	    Pos = { -7.41, 0.96, -5.36 }
+    },
+    {
+	    Name = "Serbia",
+	    Pos = { 2.29, 0.96, -8.32 }
+    },
+
+    -- The East
+    {
+	    Name = "Novgorod",
+	    Pos = { 2.15, 0.96, 19.42 }
+    },
+    {
+	    Name = "Prussia",
+	    Pos = { -2.68, 0.96, 12.74 }
+    },
+    {
+	    Name = "Livonia",
+	    Pos = { -2.20, 0.96, 16.05 }
+    },
+    {
+	    Name = "Lithuania",
+	    Pos = { 2.16, 0.96, 9.96 }
+    },
+    {
+	    Name = "Smolensk",
+	    Pos = { 6.93, 0.96, 13.38 }
+    },
+    {
+	    Name = "Kiev",
+	    Pos = { 12.68, 0.96, 8.35 }
+    },
+    {
+	    Name = "Muscovy",
+	    Pos = { 15.60, 0.96, 14.92 }
+    },
+    {
+	    Name = "Ryazan",
+	    Pos = { 18.41, 0.96, 11.55 }
+    },
+    {
+	    Name = "The Steppes",
+	    Pos = { 22.71, 0.96, 6.82 }
+    },
+    {
+	    Name = "Khazar",
+	    Pos = { 26.60, 0.96, 1.43 }
+    },
+    {
+	    Name = "Georgia",
+	    Pos = { 34.39, 0.96, -4.44 }
+    },
+
+    -- Italy
+    {
+        Name = "Lombardy",
+	    Pos = {-17.1, 0.96,-7.34}
+    },
+    {
+        Name = "Tuscany",
+	    Pos = {-11.84, 0.96,-9.8}
+    },
+    {
+        Name = "Rome",
+	    Pos = {-9.77,0.96,-12.34}
+    },
+    {
+        Name = "Naples",
+	    Pos = {-6.02,0.96,-14.79}
+    },
+    {
+        Name = "Venice",
+	    Pos = {-8.84, 0.96,-5.5}
+    },
+    {
+        Name = "Corsica",
+	    Pos = { -17.54, 0.96, -12.48 }
+    },
+    {
+        Name = "Sardinia",
+	    Pos = { -18.42, 0.96, -15.44 }
+    },
+    {
+        Name = "Apulia",
+        Pos = {-4.57, 0.96,-17.65}
+    },
+    {
+        Name = "Sicily",
+        Pos = {-8.61,0.96,-21.44}
+    },
+
+    -- Iberian Peninsula
+    {
+        Name = "Leon",
+	    Pos = { -36.37, 0.96, -7.82 }
+    },
+    {
+        Name = "Castille",
+	    Pos = { -34.38, 0.96, -10.62 }
+    },
+    {
+        Name = "Aragon",
+	    Pos = { -26.82, 0.96, -11.20 }
+    },
+    {
+        Name = "Portugal",
+	    Pos = { -37.29, 0.96, -13.71 }
+    },
+    {
+        Name = "Valencia",
+	    Pos = { -29.61, 0.96, -14.27 }
+    },
+    {
+        Name = "Cordova",
+	    Pos = { -35.17, 0.96, -17.09 }
+    },
+    {
+        Name = "Granada",
+	    Pos = { -32.88, 0.96, -19.80 }
+    },
+
+    -- Asia Minor
+    {
+	    Name = "Constantinople",
+	    Pos = {15.86, 0.96, -9.41}
+    },
+    {
+	    Name = "Adrianople",
+	    Pos = {7.21, 0.96,-11.07}
+    },
+    {
+	    Name = "Greece",
+	    Pos = {5.87,0.96,-17.83}
+    },
+    {
+	    Name = "Trebizond",
+	    Pos = {25.44,0.96,-8.38}
+    },
+    {
+	    Name = "Asia",
+	    Pos = {14.81,0.96,-14.23}
+    },
+    {
+	    Name = "Cilicia",
+	    Pos = {23.16,0.96,-15.53}
+    },
+    {
+	    Name = "Anatolia",
+	    Pos = {26.51, 0.96,-12.20}
+    },
+    {
+	    Name = "Macedonia",
+	    Pos = {2.16, 0.96,-13.88}
+    },
+    {
+	    Name = "Armenia",
+	    Pos = { 35.20, 1.16, -10.71 }
+    },
+    {
+	    Name = "Syria",
+	    Pos = {  34.15, 0.96, -17.66 }
+    },
+    {
+	    Name = "Jerusalem",
+	    Pos = { 32.10, 0.96, -23.82 }
+    },
+
+}
+
+g_ScenarioData = {
+    {
+        Name = "Charlemagne and \nthe Frankish Empire",
+        StartYear = 771,
+        EndYear = 815,
+        MapToUse = "",
+        Players = {
+            {
+                    Color   =   "Neutral",
+                    Areas   = {
+                        {
+                            Name    =   "Wessex",
+                            SocialState     =   1,
+                        },
+                        {
+                            Name    =   "Northumbria",
+                            SocialState     =   2,
+                        },
+                        {
+                            Name    =   "Rome",
+                            SocialState     =   1,
+                        }
+                    },
+                    Claims  = {
+
+                    },
+                    Forts   = {
+                        {
+                            Name    =   "Saxony",
+                            Strength    =   3,
+                        },
+                        {
+                            Name    =   "Venice",
+                            Strength    =   3,
+                        },
+                    }
+            },
+            {
+                Color = "Red",
+                Name = "Charles the Great",
+                Combat = 9,
+                Admin = 9,
+                Diplomacy = 9,
+                Court = "Lorraine",
+				CourtSocialState = 3,
+                Areas = {
+                    {
+		    			Name	=	"Franconia",
+                        SocialState =   1,
+					},
+                    {
+						Name	=	"Swabia",
+                        SocialState    =    0,
+					},
+                    {
+					   	Name	=	"Switzerland",
+                        SocialState     =   0,
+					},
+                    {
+		    			Name	=	"Friesland",
+						SocialState	=	2,
+					},
+                    {
+		    			Name	=	"Flanders",
+                        SocialState     =   2,
+					},
+                    {
+		    			Name	=	"Champagne",
+                        SocialState     =   1,
+					},
+                    {
+		    			Name	=	"Ile de France",
+                        SocialState     =   2,
+					},
+                    {
+		    			Name	=	"Normandy",
+                        SocialState     =   0,
+					},
+                    {
+		    			Name	=	"Anjou",
+                        SocialState     =   0,
+					},
+                    {
+		    			Name	=	"Aquitaine",
+                        SocialState     =   0,
+					},
+                    {
+		    			Name	=	"Toulouse",
+                        SocialState     =   0,
+					},
+                    {
+		    			Name	=	"Burgundy",
+                        SocialState     =   1,
+					},
+                    {
+		    			Name	=	"Provence",
+                        SocialState     =   0,
+					},
+                },
+                Claims = {
+                    "Lorraine",
+                    "Franconia",
+                    "Swabia",
+                    "Switzerland",
+                    "Friesland",
+                    "Flanders",
+                    "Champagne",
+                    "Ile de France",
+                    "Normandy",
+                    "Anjou",
+                    "Aquitaine",
+                    "Toulouse",
+                    "Burgundy",
+                    "Provence",
+                    "Lombardy",
+                    "Tuscany",
+                    "Rome"
+                },
+                Forts = {
+                    {
+                        Name    =   "Friesland",
+                        Strength    =   2,
+                    },
+                    {
+                        Name    =   "Flanders",
+                        Strength    =   2,
+                    },
+                    {
+                        Name    =   "Lorraine",
+                        Strength    =   2,
+                    },
+                }
+            },
+            {
+                Color = "White",
+                Name = "Constantine V",
+                Combat = 5,
+                Admin = 3,
+                Diplomacy = 3,
+                Court = "Constantinople",
+				CourtSocialState = 3,
+                Areas = {
+                    {
+						Name	=	"Adrianople",
+                        SocialState     =   1,
+                    },
+					{
+						Name	=	"Greece",
+						SocialState	=	2,
+                    },
+					{
+						Name	=	"Trebizond",
+                        SocialState     =   0,
+
+                    },
+					{
+						Name	=	"Asia",
+                        SocialState     =   1,
+                    },
+					{
+						Name	=	"Cilicia",
+                        SocialState     =   0,
+                    },
+					{
+						Name	=	"Anatolia",
+                        SocialState     =   -1,
+                    },
+					{
+						Name	=	"Macedonia",
+                        SocialState     =   -1,
+                    },
+					{
+						Name	=	"Apulia",
+                        SocialState     =   -1,
+                    },
+					{
+						Name	=	"Sicily",
+                        SocialState     =   0,
+                	},
+				},
+                Claims = {
+                    "Constantinople",
+                    "Adrianople",
+                    "Greece",
+                    "Trebizond",
+                    "Asia",
+                    "Cilicia",
+                    "Macedonia",
+                    "Apulia",
+                    "Sicily",
+                    "Naples",
+                    "Rome",
+                    "Tuscany",
+                    "Venice"
+                },
+                Forts = {
+                    {
+                        Name    =   "Constantinople",
+                        Strength    =   3,
+                    },
+
+                }
+            }
+        }
+    },
+    {
+        Name = "Millenium",
+        StartYear = 976,
+        EndYear = 1075,
+    },
+    {
+        Name = "Age of the Crusades",
+        StartYear = 1136,
+        EndYear = 1200,
+    },
+    {
+        Name = "Defeat in the East",
+        StartYear = 1201,
+        EndYear = 1300,
+    },
+    {
+        Name = "Twilight of the Middle Ages",
+        StartYear = 1386,
+        EndYear = 1465,
+    },
+    {
+        Name    =   "The Grand Scenario",
+        StartYear   =   771,
+        EndYear     =   1465,
+    }
+
+}
+
+-- select a scenario
+function SelectScenario(scen)
+    scenTable = Global.getTable("g_ScenarioData")
+    scenData = scenTable[scen]
+    Global.setVar("g_CurrentScenario", scenData)
+    Global.setVar("g_ScenarioStartYear",scenData.StartYear)
+    Global.setVar("g_CurrentYear",scenData.StartYear)
+    Global.setVar("g_ScenarioEndYear",scenData.EndYear)
+    Global.setVar("g_ScenarioName",scenData.Name)
+    playerData = scenData.Players
+    for i,pd in ipairs(playerData) do
+        thePlayer = getPlayerGUIDs(pd.Color)
+        if thePlayer != nil then
+            ssBag = thePlayer.SocialStateBag
+            if (pd.Color != "Neutral") then
+                courtGUID = thePlayer.Court
+                courtName = pd.Court
+                courtMarker = getObjectFromGUID(courtGUID)
+                setupSocialStateFromMarker(courtMarker,courtName, pd.CourtSocialState)
+            end
+            -- the social state for all areas
+            for i,land in ipairs(pd.Areas) do
+                setupSocialStateFromBag(ssBag,land.Name, land.SocialState)
+            end
+            for j,claim in ipairs(pd.Claims) do
+                setupClaimFromBag(thePlayer.ClaimBag,claim)
+            end
+            for k,fort in ipairs(pd.Forts) do
+                setupFortFromBag(thePlayer.FortBag,fort)
+            end
+        end
+
+    end
+end
+
+-- given string of area name, get location data
+function getAreaLocation(areaName)
+    locs = Global.getVar("g_AreaLocations")
+    for i, data in ipairs(locs) do
+        if data.Name == areaName then
+            return data
+        end
+    end
+    return nil
+end
+
+-- get player guids
+function getPlayerGUIDs(color)
+    data = Global.getVar("g_PlayerGUIDs")
+    if data == nil then
+        return nil
+    end
+    for i,datum in ipairs(data) do
+        if datum.Color == color then
+            return datum
+        end
+    end
+    return nil
+end
+
+-- given claim bag guid in text, and area, position
+function setupClaimFromBag(bagGUID, areaName)
+    local bag = getObjectFromGUID(bagGUID)
+    local marker = bag.takeObject()
+    areaData = getAreaLocation(areaName)
+    if areaData == nil then
+        return
+    end
+    if marker == nil then
+        return
+    end
+    local basePos = areaData.Pos
+    marker.setPosition(basePos)
+    marker.setRotation({0,180,0})
+end
+
+-- given claim bag guid in text, and area, position
+function setupFortFromBag(bagGUID, fortData)
+    local bag = getObjectFromGUID(bagGUID)
+    local marker = bag.takeObject()
+    local areaName = fortData.Name
+    local strength = fortData.Strength
+    areaData = getAreaLocation(areaName)
+    if areaData == nil then
+        return
+    end
+    if marker == nil then
+        return
+    end
+    local basePos = areaData.Pos
+    marker.setPosition(basePos)
+    if strength > 2 then
+        marker.setRotation({0,180,180})
+    else
+        marker.setRotation({0,180,0})
+    end
+end
+
+
+-- with bag GUID text, and area
+function setupSocialStateFromBag(bagGUID, areaName, current)
+    local bag = getObjectFromGUID(bagGUID)
+    local marker = bag.takeObject()
+    setupSocialStateFromMarker(marker,areaName,current)
+end
+
+-- pass a marker and deposit it on an area social state area
+function setupSocialStateFromMarker(marker, areaName,current)
+    areaData = getAreaLocation(areaName)
+    if areaData == nil then
+        return
+    end
+    local pos = areaData.Pos
+    if current < 0 then
+        pos[1] = pos[1] + (g_SocialStateDelta * -1 * current)
+        marker.setRotation({0,180,180})
+    else
+        pos[1] = pos[1] + (g_SocialStateDelta * current)
+        marker.setRotation({0,180,0})
+    end
+    marker.setPosition(pos)
+end
+
+--[[ The onLoad event is called after the game save finishes loading. --]]
+function onLoad()
+
+end
+
+--[[ The onUpdate event is called once per frame. --]]
+function onUpdate()
+    --[[ print('onUpdate loop!') --]]
+end
