@@ -1,4 +1,7 @@
 
+YearTextIndex = 1
+ScenarioTextIndex = 2
+RoundTextIndex = 4
 
 defaultData = {
     yearButtons = {
@@ -15,21 +18,9 @@ defaultData = {
             tooltip = "Advance Turn",
         },
         {
-            click_turn = "decrementTurn",
-            label = "-",
-            position = {-0.6, 0.2, 0.85},
-            scale = {0.25,1.0, 0.25},
-            width= 400,
-            height = 400,
-            font_size = 400,
-            bgColor     = { 0.1, 0.1, 0.1 },
-            fgColor     = { 0.2, 1.0, 0.6 },
-            tooltip = "Decrement Turn",
-        },
-        {
             click_turn  =   "updateYear",
             label       =   "",
-            position    = {0.0,0.2,0.45},
+            position    = {0.0,0.2,0.4},
             scale       = {0.25,1.0, 0.25},
             width       = 2000,
             height      = 825,
@@ -53,7 +44,7 @@ defaultData = {
         {
             click_turn  =   "updateYear",
             label       =   "The Current Year",
-            position    = {0.0,0.2,0.15},
+            position    = {0.0,0.2,0.05},
             scale       = {0.25,1.0, 0.25},
             width       = 3000,
             height      = 300,
@@ -61,7 +52,19 @@ defaultData = {
             bgColor     = { 0.3, 0.3, 0.3 },
             fgColor     = { 0.4, 0.7, 0.4 },
             tooltip     = "Current Year"
-        }
+        },
+        {
+            click_turn  =   "updateYear",
+            label       =   "Round 1",
+            position    = {0.0,0.2,0.85},
+            scale       = {0.25,1.0, 0.25},
+            width       = 1500,
+            height      = 300,
+            font_size   = 250,
+            bgColor     = { 0.3, 0.3, 0.3 },
+            fgColor     = { 0.4, 0.9, 0.9 },
+            tooltip     = "Current Round"
+        },
     }
 }
 textFontColor = {0,0,0}
@@ -96,34 +99,30 @@ end
 
 
 function advanceTurn()
-    cy = Global.getVar("g_CurrentYear")
-    cy = cy + 5
-    ey = Global.getVar("g_ScenarioEndYear")
-    if cy > ey then
-        cy = ey + 1
+    cy = Global.getVar("g_CurrentRound")
+    cy = cy + 1
+    if cy > 5 then
+        cy = 1
+        year = Global.getVar("g_CurrentYear")
+        year = year + 5
+        Global.setVar("g_CurrentYear",year)
     end
-    Global.setVar("g_CurrentYear", cy)
+    Global.setVar("g_CurrentRound", cy)
     updateYear()
 end
 
-function decrementTurn()
-    cy = Global.getVar("g_CurrentYear")
-    cy = cy - 5
-    sy = Global.getVar("g_ScenarioStartYear")
-    if cy < sy then
-        cy = sy
-    end
-    Global.setVar("g_CurrentYear", cy)
-    updateYear()
-end
 
 function updateYear()
     cy = Global.getVar("g_CurrentYear")
     sv = tostring(cy)
-    self.editButton({index = 2, label = sv })
+    self.editButton({index = YearTextIndex, label = sv })
     cy = Global.getVar("g_ScenarioName")
     sv = tostring(cy)
-    self.editButton({index = 3, label = sv })
+    self.editButton({index = ScenarioTextIndex, label = sv })
+    cy = Global.getVar("g_CurrentRound")
+    sv = "Round "..tostring(cy)
+    self.editButton({index = RoundTextIndex, label = sv })
+
 end
 
 function onLoad(stage)
