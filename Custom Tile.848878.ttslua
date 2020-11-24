@@ -107,7 +107,7 @@ function createControls()
     for i,scen in ipairs(scenTable) do
         local fct = "onScenario_"..tostring(inx)
         local pos = basepos
-        pos[1] = -0.3
+        pos[1] = -0.4
         pos[3] = startZ + (inx * 0.2)
         self.createButton({
             click_function  = fct,
@@ -122,7 +122,7 @@ function createControls()
             font_color      = fgColor,
             tooltip         = scen.Name
         })
-        pos[1] = 0.4
+        pos[1] = 0.25
         yearRange = "From "..tostring(scen.StartYear).." to "..tostring(scen.EndYear)
         self.createButton({
             click_function  = fct,
@@ -130,12 +130,27 @@ function createControls()
             label           = yearRange,
             position        = pos,
             scale           = {0.25, 1, 0.25},
-            width           = 1000,
+            width           = 900,
             height          = 300,
             font_size       = 100,
             color           = bgColor,
             font_color      = fgColor,
             tooltip         = scen.Name
+        })
+        pos[1] = 0.65
+        optFolks = scen.OptPlayers
+        self.createButton({
+            click_function  = fct,
+            function_owner  = self,
+            label           = optFolks,
+            position        = pos,
+            scale           = {0.25, 1, 0.25},
+            width           = 500,
+            height          = 300,
+            font_size       = 100,
+            color           = bgColor,
+            font_color      = fgColor,
+            tooltip         = "Optimum # of players"
         })
         inx = inx + 1
     end
