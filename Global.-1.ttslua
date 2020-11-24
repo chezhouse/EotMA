@@ -7,6 +7,7 @@ g_CurrentScenario       =   nil
 
 g_SocialStateDelta  =   1.66
 g_UnrestBagGUID = "32039e"
+g_YearCounterGUID = "c71ac2"
 
 g_StatureBags = {
     {
@@ -40,6 +41,7 @@ g_PlayerGUIDs =
         SocialStateBag = "41cb94",
         ClaimBag = "344c77",
         FortBag = "512538",
+	    PlayerBoard = "e1b70c",
         CombatPos   =   {  -37.47, -0.79, -43.03 },
         AdminPos   =   {-32.87, -0.79, -43.03 },
         DiplomacyPos   =   { -28.27 , -0.79, -43.03 },
@@ -51,6 +53,7 @@ g_PlayerGUIDs =
         SocialStateBag = "d36a40",
         ClaimBag = "d4be3a",
         FortBag = "93a280",
+	    PlayerBoard = "a02d94",
         CombatPos   =      { 16.67, -0.35, -42.99 },  -- 4.6
         AdminPos   =       { 21.27, -0.35, -42.99 },
         DiplomacyPos   =   { 25.87, -0.35, -42.99 },
@@ -62,6 +65,7 @@ g_PlayerGUIDs =
         SocialStateBag = "d92605",
         ClaimBag = "fece3b",
         FortBag = "6bc787",
+	    PlayerBoard = "834102",
         CombatPos   =      { -8.81, -0.35, -42.98 }, -- 4.6
         AdminPos   =       { -4.21, -0.35, -42.98 },
         DiplomacyPos   =   {  0.41, -0.35, -42.98 },
@@ -73,6 +77,7 @@ g_PlayerGUIDs =
         SocialStateBag = "2a21be",
         ClaimBag = "3af2fd",
         FortBag = "4524c7",
+	    PlayerBoard = "c38a10",
         CombatPos   =      { -58.60, -0.53, 18.43 }, -- 4.6
         AdminPos   =       { -58.60, -0.53, 13.83 },
         DiplomacyPos   =   { -58.60, -0.53,  9.23 },
@@ -84,6 +89,7 @@ g_PlayerGUIDs =
         SocialStateBag = "7239b7",
         ClaimBag = "5eaf6d",
         FortBag = "02b488",
+	    PlayerBoard = "583271",
         CombatPos   =      { -58.60, -0.53, -7.55  }, -- 4.6
         AdminPos   =       { -58.60, -0.53, -12.15 },
         DiplomacyPos   =   { -58.60, -0.53, -16.55 },
@@ -95,6 +101,7 @@ g_PlayerGUIDs =
         SocialStateBag = "5362e5",
         ClaimBag = "8c3d1c",
         FortBag = "8157f2",
+	    PlayerBoard = "2ccff7",
         CombatPos   =      { -21.6, -0.53, 41.84 }, -- 4.6
         AdminPos   =       { -26.2, -0.53, 41.84  },
         DiplomacyPos   =   { -30.8, -0.53, 41.84  },
@@ -106,6 +113,7 @@ g_PlayerGUIDs =
         SocialStateBag = "dcb289",
         ClaimBag = "706b13",
         FortBag = "cf75bc",
+	    PlayerBoard = "416a68",
         CombatPos   =      {  5.6, -0.53, 41.60 }, -- 4.6
         AdminPos   =       {  1.0, -0.53, 41.60 },
         DiplomacyPos   =   { -3.4, -0.53, 41.60 },
@@ -117,6 +125,7 @@ g_PlayerGUIDs =
         SocialStateBag = "037534",
         ClaimBag = "742a38",
         FortBag = "fc024a",
+	    PlayerBoard = "5a4b51",
         CombatPos   =      { 32.6, -0.53, 41.84 }, -- 4.6
         AdminPos   =       { 28.0, -0.53, 41.84 },
         DiplomacyPos   =   { 23.4, -0.53, 41.84 },
@@ -128,6 +137,7 @@ g_PlayerGUIDs =
         SocialStateBag = "b9a57f",
         ClaimBag = "b8f9cd",
         FortBag = "6dc0ef",
+	    PlayerBoard = "47adf1",
         CombatPos   =      { 59.14, -0.94, -23.6 }, -- 4.6
         AdminPos   =       { 59.14, -0.94, -19.0 },
         DiplomacyPos   =   { 59.14, -0.94, -14.4 },
@@ -139,6 +149,7 @@ g_PlayerGUIDs =
         SocialStateBag = "a9dcd9",
         ClaimBag = "33cdb5",
         FortBag = "78af09",
+	    PlayerBoard = "5ebe0b",
         CombatPos   =      { 59.17, -0.94, 5.85 }, -- 4.6
         AdminPos   =       { 59.17, -0.94, 10.45 },
         DiplomacyPos   =   { 59.17, -0.94, 15.05 },
@@ -151,6 +162,7 @@ g_PlayerGUIDs =
         SocialStateBag  =   "a540d1",
         ClaimBag    =   "",
         FortBag = "8e6886",
+	    PlayerBoard = "",
         CombatPos   =   {},
         AdminPos   =   {},
         DiplomacyPos   =   {},
@@ -491,532 +503,544 @@ g_AreaLocations =
 }
 
 g_ScenarioData = {
-    {
-        Name = "Charlemagne and \nthe Frankish Empire",
-        StartYear = 771,
-        EndYear = 815,
-        MapToUse = "",
-        Players = {
-            {
-                    Color   =   "Neutral",
-                    Areas   = {
-                        {
-                            Name    =   "Wessex",
-                            SocialState     =   1,
-                        },
-                        {
-                            Name    =   "Northumbria",
-                            SocialState     =   2,
-                        },
-                        {
-                            Name    =   "Rome",
-                            SocialState     =   1,
-                        }
-                    },
-                    Claims  = {
+   {
+	  Name = "Charlemagne and \nthe Frankish Empire",
+	  StartYear = 771,
+	  EndYear = 815,
+	  MapToUse = "",
+	  OptPlayers = "2+",
+	  Players = {
+		 {
+			Color   =   "Neutral",
+			Areas   = {
+			   {
+				  Name    =   "Wessex",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name    =   "Northumbria",
+				  SocialState     =   2,
+			   },
+			   {
+				  Name    =   "Rome",
+				  SocialState     =   1,
+			   }
+			},
+			Claims  = {
 
-                    },
-                    Forts   = {
-                        {
-                            Name    =   "Saxony",
-                            Strength    =   3,
-                        },
-                        {
-                            Name    =   "Venice",
-                            Strength    =   3,
-                        },
-                    }
-            },
-            {
-                Color = "Red",
-                Name = "Charles the Great",
-                Combat = 9,
-                Admin = 9,
-                Diplomacy = 9,
-                Court = "Lorraine",
-				CourtSocialState = 3,
-                Areas = {
-                    {
-		    			Name	=	"Franconia",
-                        SocialState =   1,
-					},
-                    {
-						Name	=	"Swabia",
-                        SocialState    =    0,
-					},
-                    {
-					   	Name	=	"Switzerland",
-                        SocialState     =   0,
-					},
-                    {
-		    			Name	=	"Friesland",
-						SocialState	=	2,
-					},
-                    {
-		    			Name	=	"Flanders",
-                        SocialState     =   2,
-					},
-                    {
-		    			Name	=	"Champagne",
-                        SocialState     =   1,
-					},
-                    {
-		    			Name	=	"Ile de France",
-                        SocialState     =   2,
-					},
-                    {
-		    			Name	=	"Normandy",
-                        SocialState     =   0,
-					},
-                    {
-		    			Name	=	"Anjou",
-                        SocialState     =   0,
-					},
-                    {
-		    			Name	=	"Aquitaine",
-                        SocialState     =   0,
-					},
-                    {
-		    			Name	=	"Toulouse",
-                        SocialState     =   0,
-					},
-                    {
-		    			Name	=	"Burgundy",
-                        SocialState     =   1,
-					},
-                    {
-		    			Name	=	"Provence",
-                        SocialState     =   0,
-					},
-                },
-                Claims = {
-                    "Lorraine",
-                    "Franconia",
-                    "Swabia",
-                    "Switzerland",
-                    "Friesland",
-                    "Flanders",
-                    "Champagne",
-                    "Ile de France",
-                    "Normandy",
-                    "Anjou",
-                    "Aquitaine",
-                    "Toulouse",
-                    "Burgundy",
-                    "Provence",
-                    "Lombardy",
-                    "Tuscany",
-                    "Rome"
-                },
-                Forts = {
-                    {
-                        Name    =   "Friesland",
-                        Strength    =   2,
-                    },
-                    {
-                        Name    =   "Flanders",
-                        Strength    =   2,
-                    },
-                    {
-                        Name    =   "Lorraine",
-                        Strength    =   2,
-                    },
-                }
-            },
-            {
-                Color = "White",
-                Name = "Constantine V",
-                Combat = 5,
-                Admin = 3,
-                Diplomacy = 3,
-                Court = "Constantinople",
-				CourtSocialState = 3,
-                Areas = {
-                    {
-						Name	=	"Adrianople",
-                        SocialState     =   1,
-                    },
-					{
-						Name	=	"Greece",
-						SocialState	=	2,
-                    },
-					{
-						Name	=	"Trebizond",
-                        SocialState     =   0,
+			},
+			Forts   = {
+			   {
+				  Name    =   "Saxony",
+				  Strength    =   3,
+			   },
+			   {
+				  Name    =   "Venice",
+				  Strength    =   3,
+			   },
+			}
+		 },
+		 {
+			Color = "Red",
+			Name = "Charles the Great",
+			Nation = "Frankish Empire",
+			Combat = 9,
+			Admin = 9,
+			Diplomacy = 9,
+			Court = "Lorraine",
+			CourtSocialState = 3,
+			Areas = {
+			   {
+				  Name	=	"Franconia",
+				  SocialState =   1,
+			   },
+			   {
+				  Name	=	"Swabia",
+				  SocialState    =    0,
+			   },
+			   {
+				  Name	=	"Switzerland",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name	=	"Friesland",
+				  SocialState	=	2,
+			   },
+			   {
+				  Name	=	"Flanders",
+				  SocialState     =   2,
+			   },
+			   {
+				  Name	=	"Champagne",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name	=	"Ile de France",
+				  SocialState     =   2,
+			   },
+			   {
+				  Name	=	"Normandy",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name	=	"Anjou",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name	=	"Aquitaine",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name	=	"Toulouse",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name	=	"Burgundy",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name	=	"Provence",
+				  SocialState     =   0,
+			   },
+			},
+			Claims = {
+			   "Lorraine",
+			   "Franconia",
+			   "Swabia",
+			   "Switzerland",
+			   "Friesland",
+			   "Flanders",
+			   "Champagne",
+			   "Ile de France",
+			   "Normandy",
+			   "Anjou",
+			   "Aquitaine",
+			   "Toulouse",
+			   "Burgundy",
+			   "Provence",
+			   "Lombardy",
+			   "Tuscany",
+			   "Rome"
+			},
+			Forts = {
+			   {
+				  Name    =   "Friesland",
+				  Strength    =   2,
+			   },
+			   {
+				  Name    =   "Flanders",
+				  Strength    =   2,
+			   },
+			   {
+				  Name    =   "Lorraine",
+				  Strength    =   2,
+			   },
+			}
+		 },
+		 {
+			Color = "White",
+			Name = "Constantine V",
+			Nation = "Byzantine Empire",
+			Combat = 5,
+			Admin = 3,
+			Diplomacy = 3,
+			Court = "Constantinople",
+			CourtSocialState = 3,
+			Areas = {
+			   {
+				  Name	=	"Adrianople",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name	=	"Greece",
+				  SocialState	=	2,
+			   },
+			   {
+				  Name	=	"Trebizond",
+				  SocialState     =   0,
 
-                    },
-					{
-						Name	=	"Asia",
-                        SocialState     =   1,
-                    },
-					{
-						Name	=	"Cilicia",
-                        SocialState     =   0,
-                    },
-					{
-						Name	=	"Anatolia",
-                        SocialState     =   -1,
-                    },
-					{
-						Name	=	"Macedonia",
-                        SocialState     =   -1,
-                    },
-					{
-						Name	=	"Apulia",
-                        SocialState     =   -1,
-                    },
-					{
-						Name	=	"Sicily",
-                        SocialState     =   0,
-                	},
-				},
-                Claims = {
-                    "Constantinople",
-                    "Adrianople",
-                    "Greece",
-                    "Trebizond",
-                    "Asia",
-                    "Cilicia",
-                    "Macedonia",
-                    "Apulia",
-                    "Sicily",
-                    "Naples",
-                    "Rome",
-                    "Tuscany",
-                    "Venice"
-                },
-                Forts = {
-                    {
-                        Name    =   "Constantinople",
-                        Strength    =   3,
-                    },
+			   },
+			   {
+				  Name	=	"Asia",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name	=	"Cilicia",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name	=	"Anatolia",
+				  SocialState     =   -1,
+			   },
+			   {
+				  Name	=	"Macedonia",
+				  SocialState     =   -1,
+			   },
+			   {
+				  Name	=	"Apulia",
+				  SocialState     =   -1,
+			   },
+			   {
+				  Name	=	"Sicily",
+				  SocialState     =   0,
+			   },
+			},
+			Claims = {
+			   "Constantinople",
+			   "Adrianople",
+			   "Greece",
+			   "Trebizond",
+			   "Asia",
+			   "Cilicia",
+			   "Macedonia",
+			   "Apulia",
+			   "Sicily",
+			   "Naples",
+			   "Rome",
+			   "Tuscany",
+			   "Venice"
+			},
+			Forts = {
+			   {
+				  Name    =   "Constantinople",
+				  Strength    =   3,
+			   },
 
-                }
-            }
-        }
-    },
-    {
-        Name = "Millenium",
-        StartYear = 976,
-        EndYear = 1075,
-        MapToUse = "",
-        Players = {
-            {
-                Color   =   "Neutral",
-                Areas   = {
-            		{
-            			Name = "Sweden",
-            			SocialState = 1,
-            		},
-            		{
-            			Name = "Syria",
-            			SocialState = 2,
-            		},
-            		{
-            			Name = "Sicily",
-            			SocialState = 1,
-            		},
-                },
-                Claims = {
-                },
-                Forts = {
-            		{
-            			Name = "Venice",
-            			Strength = 3,
-            		}
-                },
-                Unrest = {
-                    "Verona",
-                    "Lombardy",
-                    "Tuscany",
-                    "Rome",
-                    "Ryazan",
-                    "Muscovy",
-                    "Smolensk",
-                },
-            },
-            {
-                Color   =   "Teal",
-                Name = "Otto II",
-                Combat = 2,
-                Admin = 2,
-                Diplomacy = 2,
-                Court = "Lorraine",
-				CourtSocialState = 1,
-                Areas   = {
-                    {
-                            Name    =   "Franconia",
-                            SocialState     =   1,
-                    },
-                    {
-                            Name    =   "Bavaria",
-                            SocialState     =   1,
-                    },
-                    {
-                            Name    =   "Swabia",
-                            SocialState     =   0,
-                    },
-                    {
-                            Name    =   "Austria",
-                            SocialState     =   -1,
-                    },
-                    {
-                            Name    =   "Friesland",
-                            SocialState     =   0,
-                    },
-                    {
-                            Name    =   "Saxony",
-                            SocialState     =   0,
-                    },
-                    {
-                            Name    =   "Verona",
-                            SocialState     =   1,
-                    },
-                    {
-                            Name    =   "Lombardy",
-                            SocialState     =   3,
-                    },
-                    {
-                            Name    =   "Tuscany",
-                            SocialState     =   2,
-                    },
-                    {
-                            Name    =   "Rome",
-                            SocialState     =   0,
-                    },
-                },
-                Claims = {
-                	"Lorraine",
-                    "Franconia","Bavaria","Swabia","Austria","Friesland","Saxony","Verona","Lombardy","Tuscany","Rome",
-                },
-                Forts = {
-                },
-            },
-            {
-                Color   =   "Orange",
-                Name = "Lothair",
-                Combat = 2,
-                Admin = 2,
-                Diplomacy = 2,
-                Court = "Ile de France",
-				CourtSocialState = 2,
-                Areas = {
-                    {
-                            Name    =   "Champagne",
-                            SocialState     =   1,
-                    },
-                    {
-                            Name    =   "Normandy",
-                            SocialState     =   0,
-                    },
-                    {
-                            Name    =   "Anjou",
-                            SocialState     =   0,
-                    },
-                    {
-                            Name    =   "Brittany",
-                            SocialState     =   -1,
-                    },
-                    {
-                            Name    =   "Flanders",
-                            SocialState     =   2,
-                    },
-                    {
-                            Name    =   "Aquitaine",
-                            SocialState     =   0,
-                    },
-                    {
-                            Name    =   "Toulouse",
-                            SocialState     =   0,
-                    },
+			}
+		 }
+	  }
+   },
+   {
+	  Name = "Millenium",
+	  StartYear = 976,
+	  EndYear = 1075,
+	  MapToUse = "",
+	  OptPlayers = "4-7",
+	  Players = {
+		 {
+			Color   =   "Neutral",
+			Areas   = {
+			   {
+				  Name = "Sweden",
+				  SocialState = 1,
+			   },
+			   {
+				  Name = "Syria",
+				  SocialState = 2,
+			   },
+			   {
+				  Name = "Sicily",
+				  SocialState = 1,
+			   },
+			},
+			Claims = {
+			},
+			Forts = {
+			   {
+				  Name = "Venice",
+				  Strength = 3,
+			   }
+			},
+			Unrest = {
+			   "Verona",
+			   "Lombardy",
+			   "Tuscany",
+			   "Rome",
+			   "Ryazan",
+			   "Muscovy",
+			   "Smolensk",
+			},
+		 },
+		 {
+			Color   =   "Teal",
+			Name = "Otto II",
+			Nation = "German Empire",
+			Combat = 2,
+			Admin = 2,
+			Diplomacy = 2,
+			Court = "Lorraine",
+			CourtSocialState = 1,
+			Areas   = {
+			   {
+				  Name    =   "Franconia",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name    =   "Bavaria",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name    =   "Swabia",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name    =   "Austria",
+				  SocialState     =   -1,
+			   },
+			   {
+				  Name    =   "Friesland",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name    =   "Saxony",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name    =   "Verona",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name    =   "Lombardy",
+				  SocialState     =   3,
+			   },
+			   {
+				  Name    =   "Tuscany",
+				  SocialState     =   2,
+			   },
+			   {
+				  Name    =   "Rome",
+				  SocialState     =   0,
+			   },
+			},
+			Claims = {
+			   "Lorraine",
+			   "Franconia","Bavaria","Swabia","Austria","Friesland","Saxony","Verona","Lombardy","Tuscany","Rome",
+			},
+			Forts = {
+			},
+		 },
+		 {
+			Color   =   "Orange",
+			Name = "Lothair",
+			Nation = "Kingdom of France",
+			Combat = 2,
+			Admin = 2,
+			Diplomacy = 2,
+			Court = "Ile de France",
+			CourtSocialState = 2,
+			Areas = {
+			   {
+				  Name    =   "Champagne",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name    =   "Normandy",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name    =   "Anjou",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name    =   "Brittany",
+				  SocialState     =   -1,
+			   },
+			   {
+				  Name    =   "Flanders",
+				  SocialState     =   2,
+			   },
+			   {
+				  Name    =   "Aquitaine",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name    =   "Toulouse",
+				  SocialState     =   0,
+			   },
 
-                },
-                Claims  =    {
-		"Ile de France",
-		"Champagne","Normandy","Anjou","Brittany","Flanders","Aquitaine","Toulouse",
-                },
-                Forts =     {
+			},
+			Claims  =    {
+			   "Ile de France",
+			   "Champagne","Normandy","Anjou","Brittany","Flanders","Aquitaine","Toulouse",
+			},
+			Forts =     {
 
-                },
-            },
-            {
-                Color   =   "Red",
-                Name = "Rudolf III",
-                Combat = 3,
-                Admin = 3,
-                Diplomacy = 3,
-                Court = "Burgundy",
-				CourtSocialState = 3,
-                Areas = {
-                    {
-                            Name    =   "Provence",
-                            SocialState     =   1,
-                    },
-                    {
-                            Name    =   "Switzerland",
-                            SocialState     =   0,
-                    },
-                },
-                Claims  =   {
-		"Burgundy",
-		"Provence",
-		"Switzerland",
-                },
-                Forts =     {
+			},
+		 },
+		 {
+			Color   =   "Red",
+			Name = "Rudolf III",
+			Nation = "Kingdom of Burgundy",
+			Combat = 3,
+			Admin = 3,
+			Diplomacy = 3,
+			Court = "Burgundy",
+			CourtSocialState = 3,
+			Areas = {
+			   {
+				  Name    =   "Provence",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name    =   "Switzerland",
+				  SocialState     =   0,
+			   },
+			},
+			Claims  =   {
+			   "Burgundy",
+			   "Provence",
+			   "Switzerland",
+			},
+			Forts =     {
 
-                },
-            },
-            {
-                Color   =   "Green",
-                Name = "Harold Bluetooth",
-                Combat = 5,
-                Admin = 5,
-                Diplomacy = 5,
-                Court = "Denmark",
-				CourtSocialState = 2,
-                Areas = {
-                    {
-                            Name    =   "Northumbria",
-                            SocialState     =   1,
-                    },
-                },
-                Claims  =   {
-		"Denmark",
-		"Northumbria",
-                },
-                Forts =     {
-		{
-			Name = "Denmark",
-			Strength = 2,
-		}
+			},
+		 },
+		 {
+			Color   =   "Green",
+			Name = "Harold Bluetooth",
+			Nation = "Kingdom of Denmark",
+			Combat = 5,
+			Admin = 5,
+			Diplomacy = 5,
+			Court = "Denmark",
+			CourtSocialState = 2,
+			Areas = {
+			   {
+				  Name    =   "Northumbria",
+				  SocialState     =   1,
+			   },
+			},
+			Claims  =   {
+			   "Denmark",
+			   "Northumbria",
+			},
+			Forts =     {
+			   {
+				  Name = "Denmark",
+				  Strength = 2,
+			   }
 
-                },
-            },
-            {
-                Color   =   "Blue",
-                Name = "Mieszko I",
-                Combat = 3,
-                Admin = 3,
-                Diplomacy = 3,
-                Court = "Poland",
-				CourtSocialState = 2,
-                Areas = {
-                    {
-                            Name    =   "Silesia",
-                            SocialState     =   -1,
-                    },
-                },
-                Claims  =   {
-		"Poland",
-		"Silesia",
-                },
-                Forts =     {
+			},
+		 },
+		 {
+			Color   =   "Blue",
+			Name = "Mieszko I",
+			Nation = "Kingdom of Poland",
+			Combat = 3,
+			Admin = 3,
+			Diplomacy = 3,
+			Court = "Poland",
+			CourtSocialState = 2,
+			Areas = {
+			   {
+				  Name    =   "Silesia",
+				  SocialState     =   -1,
+			   },
+			},
+			Claims  =   {
+			   "Poland",
+			   "Silesia",
+			},
+			Forts =     {
 
-                },
-            },
-            {
-                Color   =   "Purple",
-                Name = "Vladimir the Saint",
-                Combat = 3,
-                Admin = 5,
-                Diplomacy = 5,
-                Court = "Kiev",
-				CourtSocialState = 1,
-                Areas = {
-                    {
-                            Name    =   "Ryazan",
-                            SocialState     =   -1,
-                    },
-                    {
-                            Name    =   "Muscovy",
-                            SocialState     =   1,
-                    },
-                    {
-                            Name    =   "Smolensk",
-                            SocialState     =   0,
-                    },
-                    {
-                            Name    =   "Novgorod",
-                            SocialState     =   1,
-                    },
-                    {
-                            Name    =   "Volhynia",
-                            SocialState     =   -1,
-                    },
-                },
-                Claims  =   {
-		"Kiev",
-		"Ryazan","Muscovy","Smolensk","Novgorod","Volhynia",
-                },
-                Forts =     {
+			},
+		 },
+		 {
+			Color   =   "Purple",
+			Name = "Vladimir the Saint",
+			Nation = "Kievan Russian Empire",
+			Combat = 3,
+			Admin = 5,
+			Diplomacy = 5,
+			Court = "Kiev",
+			CourtSocialState = 1,
+			Areas = {
+			   {
+				  Name    =   "Ryazan",
+				  SocialState     =   -1,
+			   },
+			   {
+				  Name    =   "Muscovy",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name    =   "Smolensk",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name    =   "Novgorod",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name    =   "Volhynia",
+				  SocialState     =   -1,
+			   },
+			},
+			Claims  =   {
+			   "Kiev",
+			   "Ryazan","Muscovy","Smolensk","Novgorod","Volhynia",
+			},
+			Forts =     {
 
-                },
-            },
-            {
-                Color   =   "White",
-                Name = "Basil II",
-                Combat = 5,
-                Admin = 5,
-                Diplomacy = 5,
-                Court = "Constantinople",
-				CourtSocialState = 3,
-                Areas = {
-                    {
-                            Name    =   "Greece",
-                            SocialState     =   1,
-                    },
-                    {
-                            Name    =   "Adrianople",
-                            SocialState     =   1,
-                    },
-                    {
-                            Name    =   "Asia",
-                            SocialState     =   1,
-                    },
-                    {
-                            Name    =   "Trebizond",
-                            SocialState     =   0,
-                    },
-                    {
-                            Name    =   "Cilicia",
-                            SocialState     =   0,
-                    },
-                    {
-                            Name    =   "Macedonia",
-                            SocialState     =   -1,
-                    },
-                    {
-                            Name    =   "Apulia",
-                            SocialState     =   -1,
-                    },
-                    {
-                            Name    =   "Anatolia",
-                            SocialState     =   -1,
-                    },
-                    {
-                            Name    =   "Armenia",
-                            SocialState     =   -1,
-                    },
-                },
-                Claims  =   {
-		"Constantinople",
-		"Greece","Adrianople","Asia","Trebizond","Cilicia","Macedonia","Apulia","Anatolia","Armenia",
-                },
-                Forts =     {
-		{
-			Name = "Constantinople",
-			Strength = 3,
-		}
+			},
+		 },
+		 {
+			Color   =   "White",
+			Name = "Basil II",
+			Nation = "Byzantine Empire",
+			Combat = 5,
+			Admin = 5,
+			Diplomacy = 5,
+			Court = "Constantinople",
+			CourtSocialState = 3,
+			Areas = {
+			   {
+				  Name    =   "Greece",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name    =   "Adrianople",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name    =   "Asia",
+				  SocialState     =   1,
+			   },
+			   {
+				  Name    =   "Trebizond",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name    =   "Cilicia",
+				  SocialState     =   0,
+			   },
+			   {
+				  Name    =   "Macedonia",
+				  SocialState     =   -1,
+			   },
+			   {
+				  Name    =   "Apulia",
+				  SocialState     =   -1,
+			   },
+			   {
+				  Name    =   "Anatolia",
+				  SocialState     =   -1,
+			   },
+			   {
+				  Name    =   "Armenia",
+				  SocialState     =   -1,
+			   },
+			},
+			Claims  =   {
+			   "Constantinople",
+			   "Greece","Adrianople","Asia","Trebizond","Cilicia","Macedonia","Apulia","Anatolia","Armenia",
+			},
+			Forts =     {
+			   {
+				  Name = "Constantinople",
+				  Strength = 3,
+			   }
 
-                },
-            },
-        }
+			},
+		 },
+	  }
     },
     {
         Name = "Age of the Crusades",
         StartYear = 1136,
         EndYear = 1200,
         MapToUse = "",
+	  OptPlayers = "4-6",
         Players = {
             {
                 Color   =   "Neutral",
@@ -1052,6 +1076,7 @@ g_ScenarioData = {
             {
                 Color   =   "Teal",
                 Name = "Lothair II",
+			   Nation = "German Empire",
                 Combat = 3,
                 Admin = 3,
                 Diplomacy = 3,
@@ -1150,6 +1175,7 @@ g_ScenarioData = {
             {
                 Color   =   "Orange",
                 Name = "Louis VI the Fat",
+			   Nation = "Kingdom of France",
                 Combat = 3,
                 Admin = 3,
                 Diplomacy = 3,
@@ -1195,6 +1221,7 @@ g_ScenarioData = {
             {
                 Color   =   "Green",
                 Name = "Stephen",
+			   Nation = "Kingdom of England",
                 Combat = 3,
                 Admin = 3,
                 Diplomacy = 3,
@@ -1234,6 +1261,7 @@ g_ScenarioData = {
             {
                 Color   =   "Red",
                 Name = "Roger II",
+			   Nation = "Kingdom of Sicily",
                 Combat = 5,
                 Admin = 5,
                 Diplomacy = 5,
@@ -1262,6 +1290,7 @@ g_ScenarioData = {
             {
                 Color   =   "White",
                 Name = "John Comnenus",
+			   Nation = "Byzantine Empire",
                 Combat = 5,
                 Admin = 3,
                 Diplomacy = 5,
@@ -1319,6 +1348,7 @@ g_ScenarioData = {
             {
                 Color   =   "Blue",
                 Name = "Boleslav III",
+			   Nation = "Principality of Poland",
                 Combat = 5,
                 Admin = 5,
                 Diplomacy = 5,
@@ -1351,6 +1381,7 @@ g_ScenarioData = {
 	   StartYear = 1201,
 	   EndYear = 1300,
 	   MapToUse = "",
+       OptPlayers = "4-6",
 	   Players = {
 		  {
 			 Color   =   "Neutral",
@@ -1671,6 +1702,7 @@ g_ScenarioData = {
         StartYear = 1386,
         EndYear = 1465,
         MapToUse = "",
+	  OptPlayers = "5-6",
  	    Players = {
             {
      			Color   =   "Neutral",
@@ -1997,6 +2029,7 @@ g_ScenarioData = {
         StartYear   =   771,
        EndYear     =   1465,
        MapToUse	=	"",
+	  OptPlayers = "2,5+",
         Players = {
             {
                     Color   =   "Neutral",
@@ -2031,6 +2064,7 @@ g_ScenarioData = {
             {
                 Color = "Red",
                 Name = "Charles the Great",
+			   Nation = "Frankish Empire",
                 Combat = 9,
                 Admin = 9,
                 Diplomacy = 9,
@@ -2127,6 +2161,7 @@ g_ScenarioData = {
             {
                 Color = "White",
                 Name = "Constantine V",
+			   Nation = "Byzantine Empire",
                 Combat = 5,
                 Admin = 3,
                 Diplomacy = 3,
@@ -2209,6 +2244,14 @@ function SelectScenario(scen)
     Global.setVar("g_CurrentYear",scenData.StartYear)
     Global.setVar("g_ScenarioEndYear",scenData.EndYear)
     Global.setVar("g_ScenarioName",scenData.Name)
+	-- update year counter
+	local yearCounter = getObjectFromGUID(g_YearCounterGUID)
+	if yearCounter != nil then
+	   if yearCounter.getVar("updateYear") then
+		  yearCounter.call("updateYear",nil)
+	   end
+	end
+
     playerData = scenData.Players
     for i,pd in ipairs(playerData) do
         thePlayer = getPlayerGUIDs(pd.Color)
@@ -2220,8 +2263,8 @@ function SelectScenario(scen)
                 courtName = pd.Court
                 courtMarker = getObjectFromGUID(courtGUID)
                 setupSocialStateFromMarker(courtMarker,courtName, pd.CourtSocialState)
-                -- take care of their leader Stature
 
+                -- take care of their leader Stature
                 local lsMarker = getLeaderStatureMarkerForValue(pd.Combat)
                 lsMarker.setPosition(thePlayer.CombatPos)
                 lsMarker.setRotation(thePlayer.StatureRotation)
@@ -2232,6 +2275,8 @@ function SelectScenario(scen)
                 lsMarker.setPosition(thePlayer.DiplomacyPos)
                 lsMarker.setRotation(thePlayer.StatureRotation)
 
+				-- display name and nation
+				displayNationName(thePlayer.PlayerBoard,pd)
 	        else
         		if pd.Unrest != nil then
         		   for i,bad in ipairs(pd.Unrest) do
@@ -2254,6 +2299,63 @@ function SelectScenario(scen)
         end
 
     end
+end
+
+
+-- displayNationName
+function displayNationName(boardGUID, playerData)
+   local board = getObjectFromGUID(boardGUID)
+   local playerName = playerData.Name
+   local nationName = playerData.Nation
+   local pos = { 1.45, 0.5, -0.75 }
+   local rot = { 0, 0, 0 }
+   local scale = { 0.25, 1.0, 0.25 }
+   local fgColor = { 0.5, 5.0, 5.0 }
+   local bgColor = { 0,0,0}
+   -- player name
+   board.createInput({
+        input_function  = "changePlayerName",
+        function_owner  = self,
+        label           = "Ruler",
+        position        = pos,
+        rotation	       = rot,
+        scale           = scale,
+        width           = 2500,
+        height          = 350,
+        font_size       = 200,
+        font_color      = fgColor,
+        color           = bgColor,
+        tooltip         = "Ruler",
+        alignment	   = 2,
+        value		   = playerName,
+        validation	   = 1,
+        })
+    pos[3] = -0.45
+    board.createInput({
+       input_function  = "changePlayerNation",
+       function_owner  = self,
+       label           = "Nation",
+       position        = pos,
+       rotation	       = rot,
+       scale           = scale,
+       width           = 2500,
+       height          = 350,
+       font_size       = 200,
+       font_color      = fgColor,
+     color           = bgColor,
+       tooltip         = "Nation",
+       alignment	   = 2,
+       value		   = nationName,
+       validation	   = 1,
+     })
+
+end
+
+-- changePlayerName
+function changePlayerName()
+end
+
+function changePlayerNation()
 end
 
 -- given string of area name, get location data
