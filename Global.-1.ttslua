@@ -507,7 +507,7 @@ g_ScenarioData = {
 	  Name = "Charlemagne and \nthe Frankish Empire",
 	  StartYear = 771,
 	  EndYear = 815,
-	  MapToUse = "",
+	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Scen1and6.jpg",
 	  OptPlayers = "2+",
 	  Players = {
 		 {
@@ -716,7 +716,7 @@ g_ScenarioData = {
 	  Name = "Millenium",
 	  StartYear = 976,
 	  EndYear = 1075,
-	  MapToUse = "",
+	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Scen2.jpg",
 	  OptPlayers = "4-7",
 	  Players = {
 		 {
@@ -1048,7 +1048,7 @@ g_ScenarioData = {
         Name = "Age of the Crusades",
         StartYear = 1136,
         EndYear = 1200,
-        MapToUse = "",
+	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Scen3.jpg",
 	  OptPlayers = "4-6",
         Players = {
             {
@@ -1395,7 +1395,7 @@ g_ScenarioData = {
 	   Name = "Defeat in the East",
 	   StartYear = 1201,
 	   EndYear = 1300,
-	   MapToUse = "",
+	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Scen4.jpg",
        OptPlayers = "4-6",
 	   Players = {
 		  {
@@ -1723,7 +1723,7 @@ g_ScenarioData = {
         Name = "Twilight of the Middle Ages",
         StartYear = 1386,
         EndYear = 1465,
-        MapToUse = "",
+       MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Scen5.jpg",
 	  OptPlayers = "5-6",
  	    Players = {
             {
@@ -2056,7 +2056,7 @@ g_ScenarioData = {
         Name    =   "The Grand Scenario",
         StartYear   =   771,
        EndYear     =   1465,
-       MapToUse	=	"",
+       MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Scen1and6.jpg",
 	  OptPlayers = "2,5+",
         Players = {
             {
@@ -2274,13 +2274,15 @@ function SelectScenario(scen)
     Global.setVar("g_CurrentYear",scenData.StartYear)
     Global.setVar("g_ScenarioEndYear",scenData.EndYear)
     Global.setVar("g_ScenarioName",scenData.Name)
-	-- update year counter
-	local yearCounter = getObjectFromGUID(g_YearCounterGUID)
-	if yearCounter != nil then
-	   if yearCounter.getVar("updateYear") then
-		  yearCounter.call("updateYear",nil)
-	   end
-	end
+    -- update year counter
+    local yearCounter = getObjectFromGUID(g_YearCounterGUID)
+    if yearCounter != nil then
+       if yearCounter.getVar("updateYear") then
+	  yearCounter.call("updateYear",nil)
+       end
+    end
+
+    loadScenarioMap(scenData.MapToUse)
 
     playerData = scenData.Players
     for i,pd in ipairs(playerData) do
@@ -2331,6 +2333,17 @@ function SelectScenario(scen)
     end
 end
 
+-- loads scenario map
+function loadScenarioMap(newURL)
+    local board = getObjectFromGUID("7ef384")
+    local selfParams = board.getCustomObject()
+    print("old:"..tostring(selfParams.image))
+    local imgURL = newURL
+    selfParams.image = imgURL
+    board.setCustomObject(selfParams)
+    board.reload()
+    print("new:"..tostring(selfParams.image))
+end
 
 -- displayNationName
 function displayNationName(boardGUID, playerData)
@@ -2541,7 +2554,6 @@ end
 
 --[[ The onLoad event is called after the game save finishes loading. --]]
 function onLoad()
-
 end
 
 --[[ The onUpdate event is called once per frame. --]]
