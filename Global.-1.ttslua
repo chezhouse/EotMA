@@ -507,7 +507,7 @@ g_ScenarioData = {
 	  Name = "Charlemagne and \nthe Frankish Empire",
 	  StartYear = 771,
 	  EndYear = 815,
-	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Scen1and6.jpg",
+	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Map-Scen1and6.jpg",
 	  OptPlayers = "2+",
 	  Players = {
 		 {
@@ -716,7 +716,7 @@ g_ScenarioData = {
 	  Name = "Millenium",
 	  StartYear = 976,
 	  EndYear = 1075,
-	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Scen2.jpg",
+	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Map-Scen2.jpg",
 	  OptPlayers = "4-7",
 	  Players = {
 		 {
@@ -1048,7 +1048,7 @@ g_ScenarioData = {
         Name = "Age of the Crusades",
         StartYear = 1136,
         EndYear = 1200,
-	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Scen3.jpg",
+	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Map-Scen3.jpg",
 	  OptPlayers = "4-6",
         Players = {
             {
@@ -1395,7 +1395,7 @@ g_ScenarioData = {
 	   Name = "Defeat in the East",
 	   StartYear = 1201,
 	   EndYear = 1300,
-	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Scen4.jpg",
+	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Map-Scen4.jpg",
        OptPlayers = "4-6",
 	   Players = {
 		  {
@@ -1723,7 +1723,7 @@ g_ScenarioData = {
         Name = "Twilight of the Middle Ages",
         StartYear = 1386,
         EndYear = 1465,
-       MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Scen5.jpg",
+       MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Map-Scen5.jpg",
 	  OptPlayers = "5-6",
  	    Players = {
             {
@@ -2056,7 +2056,7 @@ g_ScenarioData = {
         Name    =   "The Grand Scenario",
         StartYear   =   771,
        EndYear     =   1465,
-       MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Scen1and6.jpg",
+       MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Map-Scen1and6.jpg",
 	  OptPlayers = "2,5+",
         Players = {
             {
@@ -2337,12 +2337,13 @@ end
 function loadScenarioMap(newURL)
     local board = getObjectFromGUID("7ef384")
     local selfParams = board.getCustomObject()
-    print("old:"..tostring(selfParams.image))
+    -- print("old:"..tostring(selfParams.image))
     local imgURL = newURL
     selfParams.image = imgURL
     board.setCustomObject(selfParams)
     board.reload()
-    print("new:"..tostring(selfParams.image))
+    -- print("new:"..tostring(selfParams.image))
+    print("Scenario map loading...")
 end
 
 -- displayNationName
