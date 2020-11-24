@@ -98,14 +98,15 @@ function createButtons()
 end
 
 
+
 function advanceTurn()
     cy = Global.getVar("g_CurrentRound")
     cy = cy + 1
+    year = Global.getVar("g_CurrentYear")
+    year = year + 5
+    Global.setVar("g_CurrentYear",year)
     if cy > 5 then
         cy = 1
-        year = Global.getVar("g_CurrentYear")
-        year = year + 5
-        Global.setVar("g_CurrentYear",year)
     end
     Global.setVar("g_CurrentRound", cy)
     updateYear()
