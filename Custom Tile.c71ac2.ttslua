@@ -2,13 +2,14 @@
 YearTextIndex = 1
 ScenarioTextIndex = 2
 RoundTextIndex = 4
+GameEndTextIndex = 5
 
 defaultData = {
     yearButtons = {
         {
             click_turn = "advanceTurn",
             label = "+",
-            position = {0.6, 0.2, 0.85},
+            position = {0.6, 0.2, 0.88},
             scale = {0.25,1.0, 0.25},
             width= 400,
             height = 400,
@@ -20,7 +21,7 @@ defaultData = {
         {
             click_turn  =   "updateYear",
             label       =   "",
-            position    = {0.0,0.2,0.4},
+            position    = {0.0,0.2,0.38},
             scale       = {0.25,1.0, 0.25},
             width       = 2000,
             height      = 825,
@@ -56,7 +57,7 @@ defaultData = {
         {
             click_turn  =   "updateYear",
             label       =   "Round 1",
-            position    = {0.0,0.2,0.85},
+            position    = {0.0,0.2,0.88},
             scale       = {0.25,1.0, 0.25},
             width       = 1500,
             height      = 300,
@@ -64,6 +65,18 @@ defaultData = {
             bgColor     = { 0.3, 0.3, 0.3 },
             fgColor     = { 0.4, 0.9, 0.9 },
             tooltip     = "Current Round"
+        },
+        {
+            click_turn  =   "updateYear",
+            label       =   "Game Ends",
+            position    = {0.0,0.2,0.7},
+            scale       = {0.25,1.0, 0.25},
+            width       = 3000,
+            height      = 300,
+            font_size   = 250,
+            bgColor     = { 0.3, 0.3, 0.3 },
+            fgColor     = { 0.4, 0.7, 0.5 },
+            tooltip     = "Last Year of Game"
         },
     }
 }
@@ -123,6 +136,10 @@ function updateYear()
     cy = Global.getVar("g_CurrentRound")
     sv = "Round "..tostring(cy)
     self.editButton({index = RoundTextIndex, label = sv })
+
+    cy = Global.getVar("g_ScenarioEndYear")
+    sv = "Game Ends "..tostring(cy)
+    self.editButton({index = GameEndTextIndex, label = sv })
 
 end
 
