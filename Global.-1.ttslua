@@ -521,7 +521,7 @@ g_ScenarioData = {
 	  Name = "Charlemagne and \nthe Frankish Empire",
 	  StartYear = 771,
 	  EndYear = 815,
-	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Map-Scen1and6.jpg",
+	  MapToUse = "http://cloud-3.steamusercontent.com/ugc/1652221166871229889/44FE5DAAA183CECA6853B24A67ECFF4335343015",
 	  OptPlayers = "2+",
 	  Players = {
 		 {
@@ -730,7 +730,7 @@ g_ScenarioData = {
 	  Name = "Millenium",
 	  StartYear = 976,
 	  EndYear = 1075,
-	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Map-Scen2.jpg",
+	  MapToUse = "http://cloud-3.steamusercontent.com/ugc/1652221166871230466/A02AB1C548FBDBB20084C659EFF5228AD6197D66/",
 	  OptPlayers = "4-7",
 	  Players = {
 		 {
@@ -1062,7 +1062,7 @@ g_ScenarioData = {
         Name = "Age of the Crusades",
         StartYear = 1136,
         EndYear = 1200,
-	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Map-Scen3.jpg",
+	  MapToUse = "http://cloud-3.steamusercontent.com/ugc/1652221166871231029/3F6DA19A616CA258FEE99034B1C61B8F656280EC/",
 	  OptPlayers = "4-6",
         Players = {
             {
@@ -1409,7 +1409,7 @@ g_ScenarioData = {
 	   Name = "Defeat in the East",
 	   StartYear = 1201,
 	   EndYear = 1300,
-	  MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Map-Scen4.jpg",
+	  MapToUse = "http://cloud-3.steamusercontent.com/ugc/1652221166871232724/76F70B9C6D527CFEAE2F4A64E5B084CE8374CEC9/",
        OptPlayers = "4-6",
 	   Players = {
 		  {
@@ -1737,7 +1737,7 @@ g_ScenarioData = {
         Name = "Twilight of the Middle Ages",
         StartYear = 1386,
         EndYear = 1465,
-       MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Map-Scen5.jpg",
+       MapToUse = "http://cloud-3.steamusercontent.com/ugc/1652221166871231872/CF4D170E2159963D5F5DA89549B7F9282823EE13/",
 	  OptPlayers = "5-6",
  	    Players = {
             {
@@ -2070,7 +2070,7 @@ g_ScenarioData = {
         Name    =   "The Grand Scenario",
         StartYear   =   771,
        EndYear     =   1465,
-       MapToUse = "https://raw.githubusercontent.com/chezhouse/EotMA/develop/Map-Scen1and6.jpg",
+       MapToUse = "http://cloud-3.steamusercontent.com/ugc/1652221166871229889/44FE5DAAA183CECA6853B24A67ECFF4335343015/",
 	  OptPlayers = "2,5+",
         Players = {
             {
